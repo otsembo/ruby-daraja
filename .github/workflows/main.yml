@@ -3,6 +3,7 @@ name: Ruby
 on:
   push:
     branches:
+      - main
       - master
 
   pull_request:
@@ -10,11 +11,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Ruby ${{ matrix.ruby }}
+    name: Lint & Test ${{ matrix.ruby }}
     strategy:
       matrix:
         ruby:
           - '3.0.2'
+          - '2.7.4'
 
     steps:
     - uses: actions/checkout@v3
@@ -23,5 +25,5 @@ jobs:
       with:
         ruby-version: ${{ matrix.ruby }}
         bundler-cache: true
-    - name: Run the default task
+    - name: Linters & Tests
       run: bundle exec rake
