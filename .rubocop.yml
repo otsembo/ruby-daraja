@@ -1,13 +1,85 @@
+# require other spec gems
+require: rubocop-rspec
+
+# AllCops configuration
 AllCops:
-  TargetRubyVersion: 2.6
+  # Exclude the vendor directory and any generated files
+  Exclude:
+    - 'vendor/**/*'
+    - '**/*.rdoc'
+    - '**/*.md'
+    - '**/Gemfile'
+    - '**/Rakefile'
+    - '**/Guardfile'
+    - '**/config.ru'
 
-Style/StringLiterals:
+# Style configuration
+Style/Documentation:
   Enabled: true
-  EnforcedStyle: double_quotes
+  Exclude:
+    - 'lib/daraja_api_wrapper/version.rb'
 
-Style/StringLiteralsInInterpolation:
+# Lint configuration
+Lint/AmbiguousRegexpLiteral:
   Enabled: true
-  EnforcedStyle: double_quotes
+Lint/BlockAlignment:
+  Enabled: true
+Lint/DeprecatedClassMethods:
+  Enabled: true
+Lint/RedundantCopDisableDirective:
+  Enabled: true
+Lint/ShadowingOuterLocalVariable:
+  Enabled: true
 
-Layout/LineLength:
+# Metrics configuration
+Metrics/BlockLength:
+  Enabled: true
+  Max: 20
+Metrics/CyclomaticComplexity:
+  Enabled: true
+  Max: 10
+Metrics/LineLength:
+  Enabled: true
   Max: 120
+Metrics/MethodLength:
+  Enabled: true
+  Max: 15
+Metrics/PerceivedComplexity:
+  Enabled: true
+  Max: 10
+Metrics/ParameterLists:
+  Enabled: true
+  Max: 3
+
+# Naming configuration
+Naming/AccessorMethodName:
+  Enabled: true
+Naming/MethodName:
+  Enabled: true
+Naming/PredicateName:
+  Enabled: true
+
+
+# RSpec configuration
+RSpec/BeforeAfterAll:
+  Enabled: true
+RSpec/DescribeClass:
+  Enabled: true
+RSpec/ExpectActual:
+  Enabled: true
+RSpec/ImplicitExpect:
+  Enabled: true
+RSpec/LetBeforeExamples:
+  Enabled: true
+RSpec/MultipleExpectations:
+  Enabled: true
+RSpec/NestedGroups:
+  Enabled: true
+RSpec/RepeatedDescription:
+  Enabled: true
+RSpec/SingleArgumentMessageChain:
+  Enabled: true
+RSpec/SubjectStub:
+  Enabled: true
+RSpec/VerifiedDoubles:
+  Enabled: true

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "daraja/version"
+require_relative 'daraja/version'
 
 module Ruby
   module Daraja
