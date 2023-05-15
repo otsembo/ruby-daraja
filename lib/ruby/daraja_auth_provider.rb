@@ -18,17 +18,17 @@ class DarajaAuthProvider
       faraday.adapter Faraday.default_adapter
     end
     @request_token = create_auth_token
-    @token = get_token
+    @token = fetch_token
   end
 
   # Get Access Token
-  def get_token
-    @response = @connection.get('/oauth/v1/generate?grant_type=client_credentials') do |req|
+  def fetch_token
+    response = @connection.get('/oauth/v1/generate?grant_type=client_credentials') do |req|
       req.headers['Authorization'] = "Basic #{@request_token}"
     end
-    return unless @response.status == 200
+    @token = JSON.parse(response.body)['access_token']
+    return unless response.status == 200
 
-    @token = JSON.parse(@response.body)['access_token']
     @token
   end
 

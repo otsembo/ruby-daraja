@@ -7,6 +7,9 @@ on:
       - master
 
   pull_request:
+    branches:
+      - main
+      - master
 
 jobs:
   build:
@@ -27,3 +30,6 @@ jobs:
         bundler-cache: true
     - name: Linters & Tests
       run: bundle exec rake
+      env:
+        CONSUMER_KEY: ${{ secrets.CONSUMER_KEY }}
+        CONSUMER_SECRET: ${{ secrets.CONSUMER_SECRET }}
