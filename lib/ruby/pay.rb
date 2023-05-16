@@ -1,14 +1,12 @@
 # frozen_string_literal: true
 
+require 'faraday'
+
 module Pay
   class Bill < Payment; end
 
   class Goods < Payment; end
 
   # initialize Payment class
-  class Payment
-    def initialize
-      puts 'Payment initialized'
-    end
-  end
+  class Payment; end
 end

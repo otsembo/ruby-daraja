@@ -2,9 +2,11 @@
 
 require 'base64'
 require 'faraday'
+require_relative 'app_utils'
 
 # Create Access Token for Daraja Requests
 class DarajaAuthProvider
+  include AppUtils
   attr_accessor :connection, :url, :token
   attr_writer :is_sandbox, :consumer_key, :consumer_secret
   attr_reader :request_token
@@ -33,8 +35,8 @@ class DarajaAuthProvider
 
   # create an authorization token from consumer key and secret
   def create_auth_token
-    key = @consumer_key || ENV.fetch('CONSUMER_KEY')
-    secret = @consumer_secret || ENV.fetch('CONSUMER_SECRET')
+    key = @consumer_key || _consumer_key
+    secret = @consumer_secret || _consumer_secret
     Base64.strict_encode64("#{key}:#{secret}")
   end
 

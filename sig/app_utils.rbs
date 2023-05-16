@@ -2,4 +2,7 @@ module AppUtils
   def self.consumer_key: -> (string|nil)
   def self.consumer_secret: -> (string|nil)
   def self.auth_provider: -> DarajaAuthProvider
+
+  def self.validation_url: -> string
+  def self.confirmation_url: -> string
 end
