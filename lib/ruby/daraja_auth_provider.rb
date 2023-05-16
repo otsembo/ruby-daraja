@@ -24,7 +24,7 @@ class DarajaAuthProvider
     @token = fetch_token
   end
 
-  # Get Access Token
+  # fetch authorization token from daraja API
   def fetch_token
     response = @connection.get('/oauth/v1/generate?grant_type=client_credentials') do |req|
       req.headers['Authorization'] = "Basic #{@request_token}"
@@ -32,25 +32,24 @@ class DarajaAuthProvider
     @token = JSON.parse(response.body)['access_token']
     return unless response.status == 200
 
-    @token
+    @token.to_str
   end
 
-  # abstract constructor logic into method
-  # defaults to development environment
+  # create a new instance of DarajaAuthProvider class in sandbox mode
   def self.create(key: nil, secret: nil, is_sandbox: true)
     DarajaAuthProvider.new(consumer_key: key, consumer_secret: secret, is_sandbox: is_sandbox)
   end
 
   private
 
-  # Create an Authorization Token
+  # create an authorization token from consumer key and secret
   def create_auth_token
     key = @consumer_key || ENV.fetch('CONSUMER_KEY')
     secret = @consumer_secret || ENV.fetch('CONSUMER_SECRET')
     Base64.strict_encode64("#{key}:#{secret}")
   end
 
-  # Toggle between sandbox and production daraja API urls
+  # toggle between sandbox and production daraja API urls
   def toggle_base_url
     @url = if @is_sandbox
              'https://sandbox.safaricom.co.ke/'
