@@ -3,6 +3,7 @@ require: rubocop-rspec
 
 # AllCops configuration
 AllCops:
+  NewCops: enable
   # Exclude the vendor directory and any generated files
   Exclude:
     - 'vendor/**/*'

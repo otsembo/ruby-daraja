@@ -1,24 +1,57 @@
 # Ruby::Daraja
 
-TODO: Delete this and the text below, and describe your gem
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/ruby/daraja`. To experiment with that code, run `bin/console` for an interactive prompt.
+`Ruby::Daraja` is a Ruby wrapper for the [Safaricom Daraja API](https://developer.safaricom.co.ke). It provides a simple interface to the API endpoints and allows for smooth setup in `Ruby on Rails` applications or any other Ruby application.
 
 ## Installation
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
+**IMPORTANT**: This gem is not yet released to [rubygems.org](https://rubygems.org). The instructions below are for when the gem is released.
 
 Install the gem and add to the application's Gemfile by executing:
 
-    $ bundle add UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
+    $ bundle add ruby-daraja
 
 If bundler is not being used to manage dependencies, install the gem by executing:
 
-    $ gem install UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
+    $ gem install ruby-daraja
 
-## Usage
+# Usage
+With `ruby-daraja` you can easily make requests to the Safaricom Daraja API. The DSL is simple and easy to use. The DSL is divided into [two] parts:
 
-TODO: Write usage instructions here
+1. [Configuration](#configuration)
+2. [Requests](#requests)
+
+### Configuration
+In order to get started with the DSL, you need to configure the gem with your credentials. 
+
+1. The gem uses environment variables to store the API credentials. The following environment variables are required:
+    ```shell
+    CONSUMER_KEY='daraja consumer key here'
+    CONSUMER_SECRET='daraja consumer secret here'
+    ```
+2. Create a new instance of the `Ruby::Daraja::DarajaAuthProvider` class. This class will be used to create an access token for all the requests to the [Daraja](https://developer.safaricom.co.ke) API.
+    ```ruby
+    require 'ruby-daraja'
+    # Create a new instance of the DarajaAuthProvider class
+    auth_provider = DarajaAuthProvider.create
+    ```
+   
+    <div style="text-align: center;">or</div>
+
+    ```ruby
+    require 'ruby-daraja'
+    # Create a new instance of the DarajaAuthProvider class without environment variables
+    auth_provider = DarajaAuthProvider.create(
+      key: 'consumer key here',
+      secret: 'consumer secret here'
+   )
+    ```
+3. You can also have a toggle between the sandbox and production environments. The default environment is the sandbox environment. To change the environment, you can pass the `env` parameter to the `create` method. The `env` parameter can either be `:sandbox` or `:production`.
+    ```ruby
+    require 'ruby-daraja'
+    # Create a new instance of the DarajaAuthProvider class
+    auth_provider = DarajaAuthProvider.create(is_sandbox: true)
+    ```
+   **NB:** The `is_sandbox` parameter is `true` by default when using the `create` method.
 
 ## Development
 
@@ -28,7 +61,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/ruby-daraja. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/ruby-daraja/blob/master/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/otsembo/ruby-daraja. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/ruby-daraja/blob/master/CODE_OF_CONDUCT.md).
 
 ## License
 
