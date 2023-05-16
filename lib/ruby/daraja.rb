@@ -6,6 +6,8 @@ require_relative 'daraja_auth_provider'
 module Ruby
   module Daraja
     class Error < StandardError; end
-    # Your code goes here...
+
+    # import all externally defined classes
+    class AuthProvider < DarajaAuthProvider; end
   end
 end
