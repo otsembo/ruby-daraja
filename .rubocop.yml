@@ -3,6 +3,7 @@ require: rubocop-rspec
 
 # AllCops configuration
 AllCops:
+  NewCops: enable
   # Exclude the vendor directory and any generated files
   Exclude:
     - 'vendor/**/*'
@@ -61,6 +62,9 @@ Naming/PredicateName:
 
 
 # RSpec configuration
+RSpec/ExampleLength:
+  Enabled: true
+  Max: 10
 RSpec/BeforeAfterAll:
   Enabled: true
 RSpec/DescribeClass:
@@ -73,6 +77,7 @@ RSpec/LetBeforeExamples:
   Enabled: true
 RSpec/MultipleExpectations:
   Enabled: true
+  Max: 3
 RSpec/NestedGroups:
   Enabled: true
 RSpec/RepeatedDescription:

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative '../lib/ruby/daraja_auth_provider'
+require_relative '../lib/ruby/app_utils'
 require 'ruby/daraja'
 
 RSpec.configure do |config|
