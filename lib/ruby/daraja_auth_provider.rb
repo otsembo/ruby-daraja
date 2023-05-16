@@ -52,9 +52,11 @@ class DarajaAuthProvider
     response = @connection.get('/oauth/v1/generate?grant_type=client_credentials') do |req|
       req.headers['Authorization'] = "Basic #{@request_token}"
     end
-    @token = JSON.parse(response.body)['access_token']
-    return unless response.status == 200
-
+    begin
+      @token = JSON.parse(response.body)['access_token']
+    rescue JSON::ParserError => _e
+      return nil
+    end
     @token.to_str
   end
 end
