@@ -24,17 +24,6 @@ class DarajaAuthProvider
     @token = fetch_token
   end
 
-  # fetch authorization token from daraja API
-  def fetch_token
-    response = @connection.get('/oauth/v1/generate?grant_type=client_credentials') do |req|
-      req.headers['Authorization'] = "Basic #{@request_token}"
-    end
-    @token = JSON.parse(response.body)['access_token']
-    return unless response.status == 200
-
-    @token.to_str
-  end
-
   # create a new instance of DarajaAuthProvider class in sandbox mode
   def self.create(key: nil, secret: nil, is_sandbox: true)
     DarajaAuthProvider.new(consumer_key: key, consumer_secret: secret, is_sandbox: is_sandbox)
@@ -56,5 +45,16 @@ class DarajaAuthProvider
            else
              'https://api.safaricom.co.ke/'
            end
+  end
+
+  # fetch authorization token from daraja API
+  def fetch_token
+    response = @connection.get('/oauth/v1/generate?grant_type=client_credentials') do |req|
+      req.headers['Authorization'] = "Basic #{@request_token}"
+    end
+    @token = JSON.parse(response.body)['access_token']
+    return unless response.status == 200
+
+    @token.to_str
   end
 end
