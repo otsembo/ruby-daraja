@@ -16,10 +16,4 @@ module AppUtils
       secret: consumer_secret
     )
   end
-
-  # def self.daraja
-  #   Ruby::Daraja.create(
-  #     auth_provider: auth_provider
-  #   )
-  # end
 end

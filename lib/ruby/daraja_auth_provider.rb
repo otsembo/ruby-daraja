@@ -9,13 +9,16 @@ class DarajaAuthProvider
   attr_writer :is_sandbox, :consumer_key, :consumer_secret
   attr_reader :request_token
 
-  def initialize(consumer_key: nil, consumer_secret: nil, is_sandbox: true)
+  def initialize(consumer_key: nil, consumer_secret: nil, is_sandbox: false)
     @is_sandbox = is_sandbox
     @consumer_key = consumer_key
     @consumer_secret = consumer_secret
-    @connection = Faraday.new(url: toggle_base_url, headers: { 'Content-Type' => 'application/json' }) do |faraday|
-      faraday.request :url_encoded
-      faraday.adapter Faraday.default_adapter
+    @connection = Faraday.new(
+      url: toggle_base_url,
+      headers: { 'Content-Type' => 'application/json' }
+    ) do |f|
+      f.request :url_encoded
+      f.adapter Faraday.default_adapter
     end
     @request_token = create_auth_token
     @token = fetch_token
