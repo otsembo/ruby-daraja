@@ -7,7 +7,7 @@ RSpec.describe 'DarajaAuthProvider' do
   let(:invalid_provider) { DarajaAuthProvider.create(key: 'hello', secret: 'world') }
 
   it 'encodes data into base64 and authorizes sandbox request' do
-    expect(auth_provider.token).not_to eq(nil)
-    expect(invalid_provider.token).to eq(nil)
+    expect(auth_provider.token).not_to be_nil
+    expect(invalid_provider.token).to be_nil
   end
 end

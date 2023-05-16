@@ -37,4 +37,5 @@ interface for sending payment requests, checking payment status, and managing pa
 
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html
+  spec.metadata['rubygems_mfa_required'] = 'true'
 end

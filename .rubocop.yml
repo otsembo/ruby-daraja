@@ -3,17 +3,16 @@ require: rubocop-rspec
 
 # AllCops configuration
 AllCops:
-  # Enable new cops
-    NewCops: true
+  NewCops: enable
   # Exclude the vendor directory and any generated files
-    Exclude:
-      - 'vendor/**/*'
-      - '**/*.rdoc'
-      - '**/*.md'
-      - '**/Gemfile'
-      - '**/Rakefile'
-      - '**/Guardfile'
-      - '**/config.ru'
+  Exclude:
+    - 'vendor/**/*'
+    - '**/*.rdoc'
+    - '**/*.md'
+    - '**/Gemfile'
+    - '**/Rakefile'
+    - '**/Guardfile'
+    - '**/config.ru'
 
 # Style configuration
 Style/Documentation:
