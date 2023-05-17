@@ -56,7 +56,12 @@ module AppUtils
   # create a new instance of AppConfig class in sandbox mode
   # @return [AppConfig] app_config
   def _app_config
-    AppConfig.new(provider: _auth_provider)
+    AppConfig.setup(
+      provider: _auth_provider,
+      short_code: _short_code,
+      validation_url: _validation_url,
+      confirmation_url: _confirmation_url
+    )
   end
 
   ## FETCH ENVIRONMENT VARIABLES

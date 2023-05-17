@@ -6,8 +6,7 @@ require_relative 'app_utils'
 
 # Create Access Token for Daraja Requests
 class DarajaAuthProvider < AppUtils::BaseConfig
-  attr_accessor :url, :token
-  attr_writer :consumer_key, :consumer_secret
+  attr_accessor :url, :token, :consumer_key, :consumer_secret
   attr_reader :request_token, :is_sandbox
 
   def initialize(consumer_key: nil, consumer_secret: nil, is_sandbox: false)
