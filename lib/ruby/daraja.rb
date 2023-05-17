@@ -5,6 +5,7 @@ require_relative 'daraja_auth_provider'
 require_relative 'pay'
 
 module Ruby
+  # Main App module that has the Daraja Wrapper.
   module Daraja
     include AppUtils
     include Pay

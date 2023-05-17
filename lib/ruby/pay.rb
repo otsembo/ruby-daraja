@@ -74,5 +74,4 @@ module Pay
       super(config: config, pass_key: pass_key, push_type: 1)
     end
   end
-
 end
