@@ -15,43 +15,54 @@ If bundler is not being used to manage dependencies, install the gem by executin
     $ gem install ruby-daraja
 
 # Usage
-With `ruby-daraja` you can easily make requests to the Safaricom Daraja API. The DSL is simple and easy to use. The DSL is divided into [two] parts:
+With `ruby-daraja` you can easily make requests to the Safaricom Daraja API. The DSL is simple and easy to use. The DSL is divided into two parts:
 
 1. [Configuration](#configuration)
 2. [Requests](#requests)
 
-### Configuration
+## Configuration
 In order to get started with the DSL, you need to configure the gem with your credentials. 
 
-1. The gem uses environment variables to store the API credentials. The following environment variables are required:
-    ```shell
-    CONSUMER_KEY='daraja consumer key here'
-    CONSUMER_SECRET='daraja consumer secret here'
-    ```
-2. Create a new instance of the `Ruby::Daraja::DarajaAuthProvider` class. This class will be used to create an access token for all the requests to the [Daraja](https://developer.safaricom.co.ke) API.
-    ```ruby
-    require 'ruby-daraja'
-    # Create a new instance of the DarajaAuthProvider class
-    auth_provider = DarajaAuthProvider.create
-    ```
-   
-    <div style="text-align: center;">or</div>
+There are two ways to get started with `ruby-daraja`:
+1. [Development](#development)
+2. [Production](#production)
 
-    ```ruby
-    require 'ruby-daraja'
-    # Create a new instance of the DarajaAuthProvider class without environment variables
-    auth_provider = DarajaAuthProvider.create(
-      key: 'consumer key here',
-      secret: 'consumer secret here'
-   )
+
+### Development
+This is a quick-start mode for the gem. It is meant to get you up and running quickly. It is not recommended for `production` applications. To get started with the gem in `development` mode, follow the steps below:
+
+1. Setup environment variables needed for your application. The environment variables needed are:
+    ```shell
+   CONSUMER_KEY='daraja consumer key here'
+   CONSUMER_SECRET='daraja consumer secret here'
+   VALIDATION_URL='C2B Validation URL'
+   CONFIRMATION_URL='C2B Confirmation URL'
+   IS_SANDBOX='boolean indicating whether you are in sandbox or production'
+   SHORT_CODE='daraja (paybill /till number) short code here'
     ```
-3. You can also have a toggle between the sandbox and production environments. The default environment is the sandbox environment. To change the environment, you can pass the `env` parameter to the `create` method. The `env` parameter can either be `:sandbox` or `:production`.
-    ```ruby
+2. You will need a `Ruby::Daraja::Pay::AppConfig` instance. This instance is used to configure the application. It is created as follows:
+    ```{ruby}
     require 'ruby-daraja'
-    # Create a new instance of the DarajaAuthProvider class
-    auth_provider = DarajaAuthProvider.create(is_sandbox: true)
+   
+    app_config = Ruby::Daraja::AppUtils._app_config
     ```
-   **NB:** The `is_sandbox` parameter is `true` by default when using the `create` method.
+
+### Production
+`TODO: Add instructions for production mode`
+
+## Requests
+
+1. Register C2B URLs
+   ```{ruby}
+   require 'ruby-daraja'
+   
+   config = Ruby::Daraja::AppUtils._app_config
+   responses = config.register_urls # array of JSON responses from Safaricom Daraja API
+   ```
+
+2. 
+
+
 
 ## Development
 

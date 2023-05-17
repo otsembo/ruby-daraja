@@ -3,6 +3,7 @@
 require 'faraday'
 require_relative 'app_utils'
 
+# Main module for processing requests
 module Pay
   include AppUtils
   # AppConfig class

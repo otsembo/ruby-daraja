@@ -44,7 +44,7 @@ Metrics/LineLength:
   Max: 120
 Metrics/MethodLength:
   Enabled: true
-  Max: 15
+  Max: 20
 Metrics/PerceivedComplexity:
   Enabled: true
   Max: 10
