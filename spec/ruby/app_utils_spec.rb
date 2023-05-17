@@ -1,14 +1,13 @@
 # frozen_string_literal: true
 
 require_relative '../spec_helper'
-class AppUtilsTest
+class TestUtils
   include AppUtils
 end
 
 RSpec.describe AppUtils do
-
   context 'when using environment variables' do
-    let(:app_utils) { AppUtilsTest.new }
+    let(:app_utils) { TestUtils.new }
 
     it 'has valid API consumer and secret keys' do
       expect(app_utils._consumer_key).not_to be_nil

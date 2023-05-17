@@ -14,10 +14,7 @@ module Pay
       _auth_provider
     end
 
-    def register_urls
-
-    end
-
+    def register_urls; end
   end
 
   class Bill < Payment; end

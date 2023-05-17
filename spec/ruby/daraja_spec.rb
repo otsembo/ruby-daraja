@@ -10,4 +10,8 @@ RSpec.describe Ruby::Daraja do
   it 'has an auth provider' do
     expect(Ruby::Daraja::AuthProvider.new).not_to be_nil
   end
+
+  it 'has a base configuration' do
+    expect(AppUtils::BaseConfig.new).not_to be_nil
+  end
 end

@@ -7,7 +7,7 @@ RSpec.describe 'DarajaAuthProvider' do
   let(:auth_provider) do
     DarajaAuthProvider.create(key: ENV.fetch('CONSUMER_KEY', nil), secret: ENV.fetch('CONSUMER_SECRET', nil))
   end
-  let(:env_auth_provider) { AppUtilsTest.new._auth_provider }
+  let(:env_auth_provider) { TestUtils.new._auth_provider }
 
   it 'encodes data into base64 and authorizes sandbox request' do
     expect(auth_provider.token && env_auth_provider.token).not_to be_nil
