@@ -4,17 +4,26 @@ require 'faraday'
 require_relative 'app_utils'
 
 module Pay
-  class Config
-    include AppUtils
-    def initialize(**options)
-      DarajaAuthProvider.create(**options)
+  include AppUtils
+  # AppConfig class
+  class AppConfig < AppUtils::BaseConfig
+
+    def initialize(provider: nil)
+      super(is_sandbox: provider.is_sandbox)
     end
 
-    def self.build
-      _auth_provider
+    # register all request types (fail / success) urls
+    def register_urls
+      @connection.post('/mpesa/c2b/v1/registerurl') do |req|
+        req.headers['Authorization'] = "Bearer #{_auth_provider.token}"
+        req.body = {
+          ShortCode: _short_code,
+          ResponseType: 'Completed',
+          ConfirmationURL: _confirmation_url,
+          ValidationURL: _validation_url
+        }.to_json
+      end
     end
-
-    def register_urls; end
   end
 
   class Bill < Payment; end

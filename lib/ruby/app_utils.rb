@@ -43,7 +43,7 @@ module AppUtils
     end
   end
 
-  ## APP OBJECTS
+  # APP OBJECTS
   # create a new instance of DarajaAuthProvider class in sandbox mode
   def _auth_provider
     DarajaAuthProvider.create(
@@ -51,6 +51,12 @@ module AppUtils
       secret: _consumer_secret,
       is_sandbox: _is_sandbox
     )
+  end
+
+  # create a new instance of AppConfig class in sandbox mode
+  # @return [AppConfig] app_config
+  def _app_config
+    AppConfig.new(provider: _auth_provider)
   end
 
   ## FETCH ENVIRONMENT VARIABLES
@@ -82,5 +88,14 @@ module AppUtils
   # @return [Boolean] is_sandbox
   def _is_sandbox
     ENV.fetch('IS_SANDBOX', true)
+  end
+
+  # fetch short code from environment variables
+  # @return [String] short_code
+  # @raise [RuntimeError] if short code is not set
+  def _short_code
+    ENV.fetch('SHORT_CODE') do
+      raise 'Short Code not set'
+    end
   end
 end

@@ -8,7 +8,7 @@ require_relative 'app_utils'
 class DarajaAuthProvider < AppUtils::BaseConfig
   attr_accessor :url, :token
   attr_writer :consumer_key, :consumer_secret
-  attr_reader :request_token
+  attr_reader :request_token, :is_sandbox
 
   def initialize(consumer_key: nil, consumer_secret: nil, is_sandbox: false)
     super(is_sandbox: is_sandbox)
