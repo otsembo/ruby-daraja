@@ -3,6 +3,7 @@
 require 'ruby/daraja'
 require_relative '../lib/ruby/daraja_auth_provider'
 require_relative '../lib/ruby/app_utils'
+require_relative '../lib/ruby/pay'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

@@ -18,5 +18,10 @@ RSpec.describe AppUtils do
       expect(app_utils._validation_url).not_to be_nil
       expect(app_utils._confirmation_url).not_to be_nil
     end
+
+    it 'has valid short code and sandbox state' do
+      expect(app_utils._short_code).not_to be_nil
+      expect(app_utils._is_sandbox).not_to be_nil
+    end
   end
 end
