@@ -66,12 +66,12 @@ This is a quick-start mode for the gem. It is meant to get you up and running qu
    
     config = `Ruby::Daraja::AppUtils::AppConfig instance here`
     paybill_client = Ruby::Daraja::Pay::Bill.new(config)
-    paybill_client.send(
+    response = paybill_client.send(
       amount: 1,
       phone_number: '2547xxxxxxxx',
       account_reference: 'account reference',
       transaction_description: 'transaction description'
-    )
+    ) # JSON response from Safaricom Daraja API
    ```
 
 3. Initiate Payment Request (STK Push) for `MPESA Buy Goods And Services`.
@@ -80,12 +80,12 @@ This is a quick-start mode for the gem. It is meant to get you up and running qu
    
     config = `Ruby::Daraja::AppUtils.AppConfig instance here`
     till_client = Ruby::Daraja::Pay::Goods.new(config)
-    till_client.send(
+    response = till_client.send(
       amount: 1,
       phone_number: '2547xxxxxxxx',
       account_reference: 'account reference',
       transaction_description: 'transaction description'
-    )
+    ) # JSON response from Safaricom Daraja API
    ```
 
 
