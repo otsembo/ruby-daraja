@@ -52,7 +52,7 @@ This is a quick-start mode for the gem. It is meant to get you up and running qu
 
 ## Requests
 
-1. Register C2B URLs
+1. Register C2B URLs - This needs to be done only once for each set of URLs.
    ```ruby
    require 'ruby-daraja'
    
@@ -60,7 +60,33 @@ This is a quick-start mode for the gem. It is meant to get you up and running qu
    responses = config.register_urls # array of JSON responses from Safaricom Daraja API
    ```
 
-2. 
+2. Initiate Payment Request (STK Push) for `MPESA PayBill`.
+   ```ruby
+   require 'ruby-daraja'
+   
+    config = `Ruby::Daraja::AppUtils::AppConfig instance here`
+    paybill_client = Ruby::Daraja::Pay::Bill.new(config)
+    paybill_client.send(
+      amount: 1,
+      phone_number: '2547xxxxxxxx',
+      account_reference: 'account reference',
+      transaction_description: 'transaction description'
+    )
+   ```
+
+3. Initiate Payment Request (STK Push) for `MPESA Buy Goods And Services`.
+   ```ruby
+   require 'ruby-daraja'
+   
+    config = `Ruby::Daraja::AppUtils.AppConfig instance here`
+    till_client = Ruby::Daraja::Pay::Goods.new(config)
+    till_client.send(
+      amount: 1,
+      phone_number: '2547xxxxxxxx',
+      account_reference: 'account reference',
+      transaction_description: 'transaction description'
+    )
+   ```
 
 
 
