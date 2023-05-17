@@ -41,7 +41,7 @@ This is a quick-start mode for the gem. It is meant to get you up and running qu
    SHORT_CODE='daraja (paybill /till number) short code here'
     ```
 2. You will need a `Ruby::Daraja::Pay::AppConfig` instance. This instance is used to configure the application. It is created as follows:
-    ```{ruby}
+    ```ruby
     require 'ruby-daraja'
    
     app_config = Ruby::Daraja::AppUtils._app_config
@@ -53,7 +53,7 @@ This is a quick-start mode for the gem. It is meant to get you up and running qu
 ## Requests
 
 1. Register C2B URLs
-   ```{ruby}
+   ```ruby
    require 'ruby-daraja'
    
    config = Ruby::Daraja::AppUtils._app_config
