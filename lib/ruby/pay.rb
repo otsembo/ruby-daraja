@@ -62,14 +62,14 @@ module Pay
   end
 
   # MPESA Pay Bill Online (C2B / B2C)
-  class Bill < Payment
+  class PayBill < Payment
     def initialize(config: AppConfig.new, pass_key: nil)
       super(config: config, pass_key: pass_key, push_type: 0)
     end
   end
 
   # MPESA Buy Goods Online (C2B / B2C)
-  class Goods < Payment
+  class BuyGoods < Payment
     def initialize(config: AppConfig.new, pass_key: nil)
       super(config: config, pass_key: pass_key, push_type: 1)
     end
