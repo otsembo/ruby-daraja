@@ -1,10 +1,11 @@
 class DarajaAuthProvider
   attr_accessor connection: untyped
+  attr_reader is_sandbox: bool
   attr_accessor url: string | nil
   attr_accessor token: string
   attr_writer is_sandbox: bool
-  attr_writer consumer_key: string | nil
-  attr_writer consumer_secret: string | nil
+  attr_accessor consumer_key: string | nil
+  attr_accessor consumer_secret: string | nil
   attr_reader request_token: string | nil
 
   def fetch_token : () -> string

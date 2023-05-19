@@ -33,3 +33,7 @@ jobs:
       env:
         CONSUMER_KEY: ${{ secrets.CONSUMER_KEY }}
         CONSUMER_SECRET: ${{ secrets.CONSUMER_SECRET }}
+        VALIDATION_URL: ${{ secrets.VALIDATION_URL }}
+        CONFIRMATION_URL: ${{ secrets.CONFIRMATION_URL }}
+        SHORT_CODE: ${{ secrets.SHORT_CODE }}
+        IS_SANDBOX: ${{ secrets.IS_SANDBOX }}

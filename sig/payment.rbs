@@ -1,0 +1,15 @@
+class Payment
+  include AppUtils
+
+  C2B: Array[string]
+
+  attr_reader config: AppUtils::BaseConfig
+  attr_accessor pass_key: string|nil
+  attr_reader payment_credentials: { timestamp: string, password: string }
+
+  attr_reader push_type: int
+
+  private
+
+  def encode_password: -> { timestamp: string, password: string }
+end
