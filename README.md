@@ -40,11 +40,11 @@ This is a quick-start mode for the gem. It is meant to get you up and running qu
    IS_SANDBOX='boolean indicating whether you are in sandbox or production'
    SHORT_CODE='daraja (paybill /till number) short code here'
     ```
-2. You will need a `Ruby::Daraja::Pay::AppConfig` instance. This instance is used to configure the application. It is created as follows:
+2. You will need a ```Daraja::AppConfig``` instance. This instance is used to configure the application. It is created as follows:
     ```ruby
     require 'ruby-daraja'
    
-    app_config = Ruby::Daraja::AppUtils._app_config
+    app_config = Daraja::Default.new._app_config
     ```
 
 ### Production
@@ -56,7 +56,7 @@ This is a quick-start mode for the gem. It is meant to get you up and running qu
    ```ruby
    require 'ruby-daraja'
    
-   config = Ruby::Daraja::AppUtils._app_config
+   config = `Daraja::AppConfig instance here`
    responses = config.register_urls # array of JSON responses from Safaricom Daraja API
    ```
 
@@ -64,8 +64,8 @@ This is a quick-start mode for the gem. It is meant to get you up and running qu
    ```ruby
    require 'ruby-daraja'
    
-    config = `Ruby::Daraja::AppUtils::AppConfig instance here`
-    paybill_client = Ruby::Daraja::Pay::Bill.new(config)
+    config = `Daraja::AppConfig instance here`
+    paybill_client = Daraja::PayBill.new(config: app_config, pass_key: 'pass key here')
     response = paybill_client.send(
       amount: 1,
       phone_number: '2547xxxxxxxx',
@@ -78,8 +78,8 @@ This is a quick-start mode for the gem. It is meant to get you up and running qu
    ```ruby
    require 'ruby-daraja'
    
-    config = `Ruby::Daraja::AppUtils.AppConfig instance here`
-    till_client = Ruby::Daraja::Pay::Goods.new(config)
+    config = `Daraja::AppConfig instance here`
+    till_client = Daraja::BuyGoods.new(config: app_config, pass_key: 'pass key here')
     response = till_client.send(
       amount: 1,
       phone_number: '2547xxxxxxxx',

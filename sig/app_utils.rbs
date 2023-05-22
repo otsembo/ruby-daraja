@@ -1,15 +1,21 @@
 module AppUtils
-  def _connection: -> untyped
+  class BaseConfig
+    attr_accessor connection: untyped
+    attr_writer is_sandbox: bool
 
-  def _short_code: -> string
+    def toggle_base_url: -> string
+  end
 
-  def _toggle_base_url : () -> void
-  def _auth_provider: -> DarajaAuthProvider
-  def _app_config: -> BaseConfig
-
-  def _consumer_key: -> string
-  def _consumer_secret: -> string
-  def _validation_url: -> string
-  def _confirmation_url: -> string
-  def _is_sandbox: -> bool
+  class Default
+    def _connection: -> untyped
+    def _short_code: -> string
+    def _toggle_base_url : () -> void
+    def _auth_provider: -> DarajaAuthProvider
+    def _app_config: -> BaseConfig
+    def _consumer_key: -> string
+    def _consumer_secret: -> string
+    def _validation_url: -> string
+    def _confirmation_url: -> string
+    def _is_sandbox: -> bool
+  end
 end

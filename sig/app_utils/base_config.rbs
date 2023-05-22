@@ -1,8 +1,3 @@
 module AppUtils
-  class BaseConfig
-    attr_accessor connection: untyped
-    attr_writer is_sandbox: bool
 
-    def toggle_base_url: -> string
-  end
 end

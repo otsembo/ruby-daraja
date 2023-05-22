@@ -3,7 +3,6 @@
 require 'base64'
 require 'faraday'
 require_relative 'app_utils'
-
 # Create Access Token for Daraja Requests
 class DarajaAuthProvider < AppUtils::BaseConfig
   attr_accessor :url, :token, :consumer_key, :consumer_secret
