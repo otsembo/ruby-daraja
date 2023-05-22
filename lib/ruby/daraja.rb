@@ -13,4 +13,3 @@ module Daraja
   # import all externally defined classes
   class AuthProvider < DarajaAuthProvider; end
 end
-

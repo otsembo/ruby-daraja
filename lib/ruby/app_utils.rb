@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-#
-# require_relative ''
-
 # Application Utilities
 module AppUtils
   # base configuration class
@@ -123,5 +120,4 @@ module AppUtils
       end
     end
   end
-
 end
