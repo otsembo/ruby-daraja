@@ -9,7 +9,17 @@ on:
       - main
 
 jobs:
+  setup-gh:
+    runs-on: ubuntu-latest
+    name: Setup GitHub
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup GitHub
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email ${{ secrets.GITHUB_EMAIL }}
   release:
+    needs: setup-gh
     runs-on: ubuntu-latest
     name: Release to RubyGems
     steps:
