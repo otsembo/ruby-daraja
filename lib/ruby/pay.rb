@@ -7,20 +7,34 @@ require_relative 'payment'
 module Pay
   # AppConfig class
   class AppConfig < AppUtils::BaseConfig
-    attr_accessor :short_code, :confirmation_url, :validation_url
+    attr_accessor :short_code,
+                  :confirmation_url,
+                  :validation_url,
+                  :b2c_result_url,
+                  :initiator_name,
+                  :initiator_password,
+                  :ssl_certificate
     attr_reader :provider
 
     def initialize(
       provider: DarajaAuthProvider.create,
       short_code: nil,
       confirmation_url: nil,
-      validation_url: nil
+      validation_url: nil,
+      b2c_result_url: nil,
+      initiator_name: nil,
+      initiator_password: nil,
+      ssl_certificate: nil
     )
       super(is_sandbox: provider.is_sandbox)
       @short_code = short_code
       @confirmation_url = confirmation_url
       @validation_url = validation_url
       @provider = provider
+      @b2c_result_url = b2c_result_url
+      @initiator_name = initiator_name
+      @initiator_password = initiator_password
+      @ssl_certificate = ssl_certificate
     end
 
     # receive all inputs for payment setup
@@ -28,12 +42,20 @@ module Pay
       provider: DarajaAuthProvider.create,
       short_code: nil,
       confirmation_url: nil,
-      validation_url: nil
+      validation_url: nil,
+      b2c_result_url: nil,
+      initiator_name: nil,
+      initiator_password: nil,
+      ssl_certificate: nil
     )
       AppConfig.new(provider: provider,
                     short_code: short_code,
                     confirmation_url: confirmation_url,
-                    validation_url: validation_url)
+                    validation_url: validation_url,
+                    b2c_result_url: b2c_result_url,
+                    initiator_name: initiator_name,
+                    initiator_password: initiator_password,
+                    ssl_certificate: ssl_certificate)
     end
 
     # register all request types (fail / success) urls

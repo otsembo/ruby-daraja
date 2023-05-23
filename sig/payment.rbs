@@ -2,14 +2,18 @@ class Payment
   include AppUtils
 
   C2B: Array[string]
+  B2C: Array[string]
 
   attr_reader config: AppUtils::BaseConfig
   attr_accessor pass_key: string|nil
   attr_reader payment_credentials: { timestamp: string, password: string }
-
   attr_reader push_type: int
+
+  def initiate_stk_push: -> Hash[String, String|int]
+  def initiate_b2c: -> Hash[String, String|int]
 
   private
 
   def encode_password: -> { timestamp: string, password: string }
+  def security_credential: -> string
 end

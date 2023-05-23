@@ -15,6 +15,8 @@ module AppUtils
       end
     end
 
+    # toggle between sandbox and production daraja API urls
+    # @return [String] url
     def toggle_base_url
       if @is_sandbox
         'https://sandbox.safaricom.co.ke/'
@@ -63,7 +65,11 @@ module AppUtils
         provider: _auth_provider,
         short_code: _short_code,
         validation_url: _validation_url,
-        confirmation_url: _confirmation_url
+        confirmation_url: _confirmation_url,
+        b2c_result_url: _b2c_result_url,
+        initiator_name: _initiator_name,
+        initiator_password: _initiator_password,
+        ssl_certificate: _ssl_certificate
       )
     end
 
@@ -104,6 +110,15 @@ module AppUtils
       end
     end
 
+    # fetch B2C Result URL from environment variables
+    # @return [String] b2c_result_url
+    # @raise [RuntimeError] if b2c result url is not set
+    def _b2c_result_url
+      ENV.fetch('B2C_RESULT_URL') do
+        raise 'B2C Result URL not set'
+      end
+    end
+
     # fetch sandbox mode from environment variables
     # @return [Boolean] is_sandbox
     # default: true
@@ -118,6 +133,29 @@ module AppUtils
       ENV.fetch('SHORT_CODE') do
         raise 'Short Code not set'
       end
+    end
+
+    # fetch Initiator Name from environment variables
+    # @return [String] initiator_name
+    # @raise [RuntimeError] if initiator name is not set
+    def _initiator_name
+      ENV.fetch('INITIATOR_NAME') do
+        raise 'Initiator Name not set'
+      end
+    end
+
+    # fetch Initiator Password from environment variables
+    # @return [String] initiator_password
+    # @return [nil] if initiator password is not set
+    def _initiator_password
+      ENV.fetch('INITIATOR_PASSWORD', nil)
+    end
+
+    # fetch SSL Certificate from environment variables
+    # @return [String] ssl_certificate
+    # @return [nil] if ssl certificate is not set
+    def _ssl_certificate
+      ENV.fetch('SSL_CERTIFICATE', nil)
     end
   end
 end
