@@ -64,7 +64,7 @@ This is a quick-start mode for the gem. It is meant to get you up and running qu
 ### Register C2B URLs
 
 1. Register C2B URLs - This needs to be done only once for each set of URLs.
-   ```{ruby}
+   ```ruby
    require 'ruby-daraja'
    
    app_config = `Daraja::AppConfig instance here`
@@ -74,14 +74,14 @@ This is a quick-start mode for the gem. It is meant to get you up and running qu
 ### MPESA PayBill
 
 1. Create a new `Daraja::PayBill` instance.
-   ```{ruby}
+   ```ruby
    require 'ruby-daraja'
    
    app_config = `Daraja::AppConfig instance here`
    paybill_client = Daraja::PayBill.new(config: app_config, pass_key: 'pass key here')
    ```
 2. Initiate Payment Request (STK Push) for `MPESA PayBill`.
-   ```{ruby}
+   ```ruby
     response = paybill_client.initiate_stk_push(
       amount: 1,
       phone_number: '2547xxxxxxxx',
@@ -91,7 +91,7 @@ This is a quick-start mode for the gem. It is meant to get you up and running qu
    ```
    
 3. Initiate B2C Request for `MPESA PayBill`
-   ```{ruby}
+   ```ruby
    response = paybill_client.initiate_b2c(
      amount: 1,
      phone_number: '2547xxxxxxxx',
@@ -104,7 +104,7 @@ This is a quick-start mode for the gem. It is meant to get you up and running qu
 ### MPESA Buy Goods And Services
 
 1. Create a new `Daraja::BuyGoods` instance.
-   ```{ruby}
+   ```ruby
    require 'ruby-daraja'
    
    app_config = `Daraja::AppConfig instance here`
@@ -112,7 +112,7 @@ This is a quick-start mode for the gem. It is meant to get you up and running qu
    ```
 
 2. Initiate Payment Request (STK Push) for `MPESA Buy Goods And Services`.
-   ```{ruby}
+   ```ruby
     response = till_client.initiate_stk_push(
       amount: 1,
       phone_number: '2547xxxxxxxx',
@@ -122,7 +122,7 @@ This is a quick-start mode for the gem. It is meant to get you up and running qu
    ```
 
 3. Initiate B2C Request for `MPESA Buy Goods And Services`
-   ```{ruby}
+   ```ruby
    response = till_client.initiate_b2c(
      amount: 1,
      phone_number: '2547xxxxxxxx',
