@@ -47,7 +47,8 @@ This is a quick-start mode for the gem. It is meant to get you up and running qu
    B2C_RESULT_URL='B2C Result URL'
    INITIATOR_NAME='B2C initiator name'
    INITIATOR_PASSWORD='B2C initiator password'
-   SSL_CERTIFICATE='path to SSL certificate' 
+   SSL_CERTIFICATE='path to SSL certificate'
+   BALANCE_RESULT_URL='Balance Result URL' 
    ```
 2. You will need a ```Daraja::AppConfig``` instance. This instance is used to configure the application. It is created as follows:
     ```ruby
