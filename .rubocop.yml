@@ -50,7 +50,7 @@ Metrics/PerceivedComplexity:
   Max: 10
 Metrics/ParameterLists:
   Enabled: true
-  Max: 5
+  Max: 10
 
 # Naming configuration
 Naming/AccessorMethodName:

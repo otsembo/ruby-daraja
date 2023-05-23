@@ -39,7 +39,9 @@ This is a quick-start mode for the gem. It is meant to get you up and running qu
    CONFIRMATION_URL='C2B Confirmation URL'
    IS_SANDBOX='boolean indicating whether you are in sandbox or production'
    SHORT_CODE='daraja (paybill /till number) short code here'
-    ```
+   B2C_RESULT_URL='B2C Result URL'
+   INITIATOR_NAME='B2C initiator name' 
+   ```
 2. You will need a ```Daraja::AppConfig``` instance. This instance is used to configure the application. It is created as follows:
     ```ruby
     require 'ruby-daraja'
@@ -66,7 +68,7 @@ This is a quick-start mode for the gem. It is meant to get you up and running qu
    
     config = `Daraja::AppConfig instance here`
     paybill_client = Daraja::PayBill.new(config: app_config, pass_key: 'pass key here')
-    response = paybill_client.send(
+    response = paybill_client.initiate_stk_push(
       amount: 1,
       phone_number: '2547xxxxxxxx',
       account_reference: 'account reference',
@@ -80,7 +82,7 @@ This is a quick-start mode for the gem. It is meant to get you up and running qu
    
     config = `Daraja::AppConfig instance here`
     till_client = Daraja::BuyGoods.new(config: app_config, pass_key: 'pass key here')
-    response = till_client.send(
+    response = till_client.initiate_stk_push(
       amount: 1,
       phone_number: '2547xxxxxxxx',
       account_reference: 'account reference',

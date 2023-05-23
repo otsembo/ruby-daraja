@@ -1,10 +1,13 @@
 module Pay
   class AppConfig
     attr_reader provider: DarajaAuthProvider
-
     attr_accessor short_code: int|nil
     attr_accessor confirmation_url: string|nil
+    attr_accessor ssl_certificate: string|nil
     attr_accessor validation_url: string|nil
+    attr_accessor b2c_result_url: string|nil
+    attr_accessor initiator_name: string|nil
+    attr_accessor initiator_password: string|nil
 
     def self.setup : () -> Pay::AppConfig
     def register_urls: () -> Array[url_registration_response]

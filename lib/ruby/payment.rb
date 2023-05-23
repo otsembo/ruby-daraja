@@ -6,6 +6,7 @@ class Payment
   attr_accessor :pass_key
 
   C2B = %w[CustomerPayBillOnline CustomerBuyGoodsOnline].freeze
+  B2C = %w[BusinessPayment SalaryPayment PromotionPayment].freeze
   def initialize(config: AppConfig.new, pass_key: nil, push_type: 0)
     @config = config
     @pass_key = pass_key
@@ -19,9 +20,9 @@ class Payment
   # @param [String] reference
   # @param [String] description
   # @return [Hash] response
-  def send(phone_number:, amount:, reference:, description:)
+  def initiate_stk_push(phone_number:, amount:, reference:, description:)
     response = @connection.post('/mpesa/stkpush/v1/processrequest') do |req|
-      req.headers['Authorization'] = "Basic #{@provider}"
+      req.headers['Authorization'] = "Basic #{@config.provider.token}"
       req.body = {
         BusinessShortCode: @config.short_code,
         Password: @payment_credentials.password,
@@ -39,6 +40,32 @@ class Payment
     JSON.parse(response.body)
   end
 
+  # send B2C request
+  # @param [String] phone_number
+  # @param [String] amount
+  # @param [String] remarks
+  # @param [int] type
+  # @param [String|nil] occasion
+  # @return [Hash<String, String|nil>] response
+  def initiate_b2c(phone_number:, amount:, remarks:, type: 0, occasion: nil)
+    response = @connection.post('/mpesa/b2c/v1/paymentrequest') do |req|
+      req.headers['Authorization'] = "Basic #{@config.provider}"
+      req.body = {
+        InitiatorName: @config.initiator_name,
+        SecurityCredential: security_credential,
+        CommandID: B2C[type],
+        Amount: amount,
+        PartyA: @config.short_code,
+        PartyB: phone_number,
+        Remarks: remarks,
+        QueueTimeOutURL: @config.b2c_result_url,
+        ResultURL: @config.b2c_result_url,
+        Occasion: occasion
+      }.to_json
+    end
+    JSON.parse(response)
+  end
+
   private
 
   def encode_password
@@ -47,5 +74,9 @@ class Payment
       timestamp: timestamp,
       password: Base64.strict_encode64("#{@config.short_code}#{@pass_key}#{timestamp}")
     }
+  end
+
+  def security_credential
+    Base64.strict_encode64(OpenSSL::HMAC.hexdigest('sha256', @config.initiator_password, @config.ssl_certificate))
   end
 end
