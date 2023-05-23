@@ -9,6 +9,7 @@ class Payment
   attr_reader payment_credentials: { timestamp: string, password: string }
   attr_reader push_type: int
 
+  def initiate_balance_request: -> Hash[String, String|int]
   def initiate_stk_push: -> Hash[String, String|int]
   def initiate_b2c: -> Hash[String, String|int]
 

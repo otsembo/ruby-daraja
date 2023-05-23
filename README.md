@@ -101,6 +101,13 @@ This is a quick-start mode for the gem. It is meant to get you up and running qu
    ) # JSON response from Safaricom Daraja API
    ```
 
+4. Check balance for `MPESA PayBill`
+   ```ruby
+   response = paybill_client.initiate_balance_request(
+        remarks: 'remarks'
+   ) # JSON response from Safaricom Daraja API
+   ```
+
 ### MPESA Buy Goods And Services
 
 1. Create a new `Daraja::BuyGoods` instance.
@@ -129,6 +136,13 @@ This is a quick-start mode for the gem. It is meant to get you up and running qu
      type: 0, # 0 for business, 1 for salary, 2 for promotion
      remarks: 'remarks',
      occasion: 'occasion'
+   ) # JSON response from Safaricom Daraja API
+   ```
+   
+4. Check balance for `MPESA Buy Goods And Services`
+   ```ruby
+   response = till_client.initiate_balance_request(
+        remarks: 'remarks'
    ) # JSON response from Safaricom Daraja API
    ```
 

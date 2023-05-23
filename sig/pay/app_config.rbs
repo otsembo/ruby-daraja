@@ -6,6 +6,7 @@ module Pay
     attr_accessor ssl_certificate: string|nil
     attr_accessor validation_url: string|nil
     attr_accessor b2c_result_url: string|nil
+    attr_accessor balance_result_url: string|nil
     attr_accessor initiator_name: string|nil
     attr_accessor initiator_password: string|nil
 

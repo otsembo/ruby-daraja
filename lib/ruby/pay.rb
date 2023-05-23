@@ -13,7 +13,8 @@ module Pay
                   :b2c_result_url,
                   :initiator_name,
                   :initiator_password,
-                  :ssl_certificate
+                  :ssl_certificate,
+                  :balance_result_url
     attr_reader :provider
 
     def initialize(
@@ -24,7 +25,8 @@ module Pay
       b2c_result_url: nil,
       initiator_name: nil,
       initiator_password: nil,
-      ssl_certificate: nil
+      ssl_certificate: nil,
+      balance_result_url: nil
     )
       super(is_sandbox: provider.is_sandbox)
       @short_code = short_code
@@ -35,6 +37,7 @@ module Pay
       @initiator_name = initiator_name
       @initiator_password = initiator_password
       @ssl_certificate = ssl_certificate
+      @balance_result_url = balance_result_url
     end
 
     # receive all inputs for payment setup
@@ -46,7 +49,8 @@ module Pay
       b2c_result_url: nil,
       initiator_name: nil,
       initiator_password: nil,
-      ssl_certificate: nil
+      ssl_certificate: nil,
+      balance_result_url: nil
     )
       AppConfig.new(provider: provider,
                     short_code: short_code,
@@ -55,7 +59,8 @@ module Pay
                     b2c_result_url: b2c_result_url,
                     initiator_name: initiator_name,
                     initiator_password: initiator_password,
-                    ssl_certificate: ssl_certificate)
+                    ssl_certificate: ssl_certificate,
+                    balance_result_url: balance_result_url)
     end
 
     # register all request types (fail / success) urls
