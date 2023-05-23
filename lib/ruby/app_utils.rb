@@ -69,7 +69,8 @@ module AppUtils
         b2c_result_url: _b2c_result_url,
         initiator_name: _initiator_name,
         initiator_password: _initiator_password,
-        ssl_certificate: _ssl_certificate
+        ssl_certificate: _ssl_certificate,
+        balance_result_url: _balance_result_url
       )
     end
 
@@ -112,11 +113,16 @@ module AppUtils
 
     # fetch B2C Result URL from environment variables
     # @return [String] b2c_result_url
-    # @raise [RuntimeError] if b2c result url is not set
+    # @return [nil] if b2c result url is not set
     def _b2c_result_url
-      ENV.fetch('B2C_RESULT_URL') do
-        raise 'B2C Result URL not set'
-      end
+      ENV.fetch('B2C_RESULT_URL', nil)
+    end
+
+    # fetch Balance Result URL from environment variables
+    # @return [String] balance_result_url
+    # @return [nil] if balance result url is not set
+    def _balance_result_url
+      ENV.fetch('BALANCE_RESULT_URL', nil)
     end
 
     # fetch sandbox mode from environment variables

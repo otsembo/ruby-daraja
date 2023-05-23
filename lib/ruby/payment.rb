@@ -49,7 +49,7 @@ class Payment
   # @return [Hash<String, String|nil>] response
   def initiate_b2c(phone_number:, amount:, remarks:, type: 0, occasion: nil)
     response = @connection.post('/mpesa/b2c/v1/paymentrequest') do |req|
-      req.headers['Authorization'] = "Basic #{@config.provider}"
+      req.headers['Authorization'] = "Basic #{@config.provider.token}"
       req.body = {
         InitiatorName: @config.initiator_name,
         SecurityCredential: security_credential,
@@ -61,6 +61,26 @@ class Payment
         QueueTimeOutURL: @config.b2c_result_url,
         ResultURL: @config.b2c_result_url,
         Occasion: occasion
+      }.to_json
+    end
+    JSON.parse(response)
+  end
+
+  # initiate balance request
+  # @param [String?] remarks
+  # @return [Hash<String, String|nil>] response
+  def initiate_balance_request(remarks: nil)
+    response = @connection.post('/mpesa/accountbalance/v1/query') do |req|
+      req.headers['Authorization'] = "Basic #{@config.provider.token}"
+      req.body = {
+        Initiator: @config.initiator_name,
+        SecurityCredential: security_credential,
+        CommandID: 'AccountBalance',
+        PartyA: @config.short_code,
+        IdentifierType: 4,
+        Remarks: remarks,
+        QueueTimeOutURL: @config.balance_result_url,
+        ResultURL: @config.balance_result_url
       }.to_json
     end
     JSON.parse(response)

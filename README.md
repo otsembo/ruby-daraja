@@ -47,7 +47,8 @@ This is a quick-start mode for the gem. It is meant to get you up and running qu
    B2C_RESULT_URL='B2C Result URL'
    INITIATOR_NAME='B2C initiator name'
    INITIATOR_PASSWORD='B2C initiator password'
-   SSL_CERTIFICATE='path to SSL certificate' 
+   SSL_CERTIFICATE='path to SSL certificate'
+   BALANCE_RESULT_URL='Balance Result URL' 
    ```
 2. You will need a ```Daraja::AppConfig``` instance. This instance is used to configure the application. It is created as follows:
     ```ruby
@@ -73,12 +74,15 @@ This is a quick-start mode for the gem. It is meant to get you up and running qu
 
 ### MPESA PayBill
 
-1. Initiate Payment Request (STK Push) for `MPESA PayBill`.
+1. Create a new `Daraja::PayBill` instance.
    ```ruby
    require 'ruby-daraja'
    
-    app_config = `Daraja::AppConfig instance here`
-    paybill_client = Daraja::PayBill.new(config: app_config, pass_key: 'pass key here')
+   app_config = `Daraja::AppConfig instance here`
+   paybill_client = Daraja::PayBill.new(config: app_config, pass_key: 'pass key here')
+   ```
+2. Initiate Payment Request (STK Push) for `MPESA PayBill`.
+   ```ruby
     response = paybill_client.initiate_stk_push(
       amount: 1,
       phone_number: '2547xxxxxxxx',
@@ -87,7 +91,7 @@ This is a quick-start mode for the gem. It is meant to get you up and running qu
     ) # JSON response from Safaricom Daraja API
    ```
    
-2. Initiate B2C Request for `MPESA PayBill`
+3. Initiate B2C Request for `MPESA PayBill`
    ```ruby
    response = paybill_client.initiate_b2c(
      amount: 1,
@@ -98,14 +102,25 @@ This is a quick-start mode for the gem. It is meant to get you up and running qu
    ) # JSON response from Safaricom Daraja API
    ```
 
+4. Check balance for `MPESA PayBill`
+   ```ruby
+   response = paybill_client.initiate_balance_request(
+        remarks: 'remarks'
+   ) # JSON response from Safaricom Daraja API
+   ```
+
 ### MPESA Buy Goods And Services
 
-1. Initiate Payment Request (STK Push) for `MPESA Buy Goods And Services`.
+1. Create a new `Daraja::BuyGoods` instance.
    ```ruby
    require 'ruby-daraja'
    
-    app_config = `Daraja::AppConfig instance here`
-    till_client = Daraja::BuyGoods.new(config: app_config, pass_key: 'pass key here')
+   app_config = `Daraja::AppConfig instance here`
+   till_client = Daraja::BuyGoods.new(config: app_config, pass_key: 'pass key here')
+   ```
+
+2. Initiate Payment Request (STK Push) for `MPESA Buy Goods And Services`.
+   ```ruby
     response = till_client.initiate_stk_push(
       amount: 1,
       phone_number: '2547xxxxxxxx',
@@ -114,7 +129,7 @@ This is a quick-start mode for the gem. It is meant to get you up and running qu
     ) # JSON response from Safaricom Daraja API
    ```
 
-2. Initiate B2C Request for `MPESA Buy Goods And Services`
+3. Initiate B2C Request for `MPESA Buy Goods And Services`
    ```ruby
    response = till_client.initiate_b2c(
      amount: 1,
@@ -122,6 +137,13 @@ This is a quick-start mode for the gem. It is meant to get you up and running qu
      type: 0, # 0 for business, 1 for salary, 2 for promotion
      remarks: 'remarks',
      occasion: 'occasion'
+   ) # JSON response from Safaricom Daraja API
+   ```
+   
+4. Check balance for `MPESA Buy Goods And Services`
+   ```ruby
+   response = till_client.initiate_balance_request(
+        remarks: 'remarks'
    ) # JSON response from Safaricom Daraja API
    ```
 

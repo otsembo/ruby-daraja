@@ -7,8 +7,8 @@ module AppUtils
   end
 
   class Default
+    def _balance_result_url: -> string
     def _toggle_base_url : () -> void
-
     def _connection: -> untyped
     def _short_code: -> string
     def _ssl_certificate: -> string
