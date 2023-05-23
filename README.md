@@ -68,7 +68,7 @@ This is a quick-start mode for the gem. It is meant to get you up and running qu
    require 'ruby-daraja'
    
    app_config = `Daraja::AppConfig instance here`
-   responses = config.register_urls # array of JSON responses from Safaricom Daraja API
+   responses =  app_config.register_urls # array of JSON responses from Safaricom Daraja API
    ```
 
 ### MPESA PayBill
