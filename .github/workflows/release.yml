@@ -1,0 +1,28 @@
+name: Release to RubyGems
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    needs:
+      - build
+    runs-on: ubuntu-latest
+    name: Release to RubyGems
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v2
+        with:
+          ruby-version: 3.0.2
+          bundler-cache: true
+      - name: Release to RubyGems
+        run: |
+          gem install bundler
+          bundle install
+          bundle exec rake release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RUBYGEMS_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
