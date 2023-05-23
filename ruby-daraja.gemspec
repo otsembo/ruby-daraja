@@ -15,7 +15,7 @@ interface for sending payment requests, checking payment status, and managing pa
   spec.license = 'MIT'
   spec.required_ruby_version = '>= 2.7.0'
 
-  spec.metadata['allowed_push_host'] = 'https://github.com'
+  # spec.metadata['allowed_push_host'] = 'https://github.com'
 
   spec.metadata['homepage_uri'] = 'https://github.com/otsembo/ruby-daraja'
   spec.metadata['source_code_uri'] = 'https://github.com/otsembo/ruby-daraja'
