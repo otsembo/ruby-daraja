@@ -16,7 +16,7 @@ interface for sending payment requests, checking payment status, and managing pa
   spec.required_ruby_version = '>= 2.7.0'
 
   # spec.metadata['allowed_push_host'] = 'https://github.com'
-
+  spec.metadata['rubygems_mfa_required'] = 'true'
   spec.metadata['homepage_uri'] = 'https://github.com/otsembo/ruby-daraja'
   spec.metadata['source_code_uri'] = 'https://github.com/otsembo/ruby-daraja'
   spec.metadata['changelog_uri'] = 'https://github.com/otsembo/ruby-daraja/blob/main/CHANGELOG.md'
